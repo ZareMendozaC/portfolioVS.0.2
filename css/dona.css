@@ -1,0 +1,236 @@
+
+@media screen and (min-width: 769px){
+ 	
+  html{
+    font-size: 62.5%;
+  }
+ }
+
+@media screen and (min-width: 641px) and (max-width: 768px){
+
+  html{
+    font-size: 56%;
+  }
+}
+
+@media screen and (max-width: 640px){
+
+  html{
+    font-size: 50%;
+  }
+}
+
+
+a{
+  color: inherit
+}
+
+.page{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 2;
+  
+  box-sizing: border-box;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.title{
+  font-size: 3.2rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+.melnik909{
+  margin-left: 2rem;
+}
+
+/*
+ * controls
+ */
+
+.controls{
+    flex-wrap: wrap;
+}
+
+.controls__params{
+ 
+  align-items: center;
+}
+
+.controls__param{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  box-sizing: border-box;
+  cursor: pointer;
+
+  
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #448AFF;
+}
+
+.controls__group:nth-child(2){
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.controls__switch{
+  position: absolute;
+  top: 0;
+  left: -9999px;
+}
+
+.controls__switch:checked ~ .controls__param{
+  color: #000;
+  border-color: #000;
+}
+
+/*
+ * skillbar
+ */
+
+.skillbar{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+@supports (display: var(--customProperties)){
+  .skillbar{
+    --skillBarValue: 92;
+    --skillBarSize: 220;
+    --skillBarStrokeWidth: 5;
+    --skillBarColor: #fec55a;
+    --skillBarRadius: 40;
+
+    
+    position: relative;
+  }
+
+  .skillbar__value{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-weight: 700;
+    font-size: calc((var(--skillBarSize) * 1px) / 6.5);
+  }
+
+  .skillbar__progress{
+    transform: rotate(-90deg);
+    width: calc(var(--skillBarSize) * 1px);
+    height: calc(var(--skillBarSize) * 1px);
+  }
+
+  .skillbar__progress-circle{
+    width: calc(var(--skillBarSize) * 1px);
+    height: calc(var(--skillBarSize) * 1px);
+  }
+
+  .skillbar__progress-bar{
+    opacity: .4;
+    transition: stroke .5s ease-out;
+  }
+
+  .skillbar__progress-value{
+    stroke-dasharray: var(--skillBarCircumference);
+    stroke-dashoffset: var(--skillBarPercent);
+  }
+
+  .js-skillbar__progress-value_animated{
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.42, 0, 0, 1.21), stroke .5s ease-out;
+  }
+}
+
+/*
+ * fallback for browsers which doesn't support a CSS Custom Properties.
+ * But not for IE 11
+ */
+
+@supports not (display: var(--customProperties)){
+  
+  .title:after{
+    content: "It's a fallback for browsers which doesn't support a CSS Custom Properties";
+    display: block;
+    margin-top: .5rem;
+    
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  
+  .controls{
+    display: none;
+  }
+  
+  .skillbar{
+    width: 30rem;
+    display: block;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skillbar:before{
+    content: "";
+    width: 100%;
+    height: .5rem;
+    background-color: #9C27B0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-8%);
+  }
+  
+  .skillbar:after{
+    content: "";
+    width: 100%;
+    height: .5rem;
+    background-color: rgba(156, 39, 176, .2);
+    
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .skillbar__value{
+    display: block;
+    font-size: 2rem;
+    
+    margin-bottom: .8rem;
+    text-align: right;
+    padding-left: 3rem;
+  }
+  
+  .skillbar__value:before{
+    content: "HTML";
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+    
+  .skillbar__progress{
+    display: none;
+  }
+}
+
+.skillbar span{
+  color: white;
+}
+.controls__param:hover{
+  color: white;
+}
